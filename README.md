@@ -81,18 +81,37 @@ for row in conn.execute("SELECT name, modality, domain FROM datasets"):
 
 ## Data Directory
 
-Ground truth dataset files live in `data/` (gitignored). Structure:
+Ground truth dataset files live in `data/` (gitignored). Each dataset family has a parent folder containing raw data and any derived versions:
 
 ```
 data/
 ├── robinovich/                 1.1GB   300 mp4 fall videos
-├── robinovich-pose-yolo11/     4.1GB   YOLO11 keypoints + skeleton videos
-├── le2i/                       17GB    190 avi fall videos, 6 scenes
-├── fall-signal/                12GB    accelerometer + geophone CSVs
-├── histotripsy/                3.2GB   DICOM CT + ultrasound video
-├── public-fall-sets/           284GB   HAR-UP, Ku Leuven, UR Fall, etc.
-├── friendship-room/            6.3GB   Avigilon camera recordings
-└── friendship-faro/            3.9GB   FARO 3D room scans
+│   ├── annotations/                    temporal fall annotations (JSON)
+│   └── pose-yolo11/            4.1GB   YOLO11 keypoints + skeleton overlay videos
+├── le2i/                       17GB    190 avi fall videos, 6 indoor scenes
+├── ku-leuven/
+│   └── videos/                 4.3GB   270 avi multi-camera fall videos
+├── ur-fall/
+│   ├── original/               116MB   100 side-by-side (depth+RGB) videos
+│   ├── adl-rgb/                5MB     40 ADL sequences, RGB only
+│   ├── adl-depth/              16MB    40 ADL sequences, depth/IR only
+│   ├── falls-rgb/              195MB   60 fall sequences, RGB only
+│   ├── falls-depth/            203MB   60 fall sequences, depth/IR only
+│   └── rgb-pose-yolo11/        1.2GB   YOLO11 keypoints + skeleton videos (RGB)
+├── sisfall/
+│   ├── signals/                217MB   accelerometer/gyroscope data (ZIP + CSV)
+│   ├── videos/                 26MB    34 demo videos from YouTube
+│   └── pose-yolo11/            888MB   YOLO11 keypoints + skeleton videos
+├── har-up/
+│   └── archives/               276GB   1,111 ZIP archives (HAR-UP dataset)
+├── multiple-cameras-fall/
+│   └── dataset/                3.6GB   multi-camera fall recordings
+├── fall-signal/                12GB    accelerometer + geophone CSVs (3 sessions)
+├── histotripsy/                3.2GB   DICOM CT scans + ultrasound video
+├── friendship/
+│   ├── room-videos/            6.3GB   27 Avigilon camera recordings
+│   └── faro-scans/             3.9GB   FARO 3D room scans
+└── set-elderly/                186MB   setElderly.zip (uncataloged)
 ```
 
 ## Integration with Label-Software
