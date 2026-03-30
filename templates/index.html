@@ -1,0 +1,241 @@
+{% extends "default:base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ base_url }}static/vt-theme.css">
+<style>
+  .catalog-hero {
+    background: linear-gradient(135deg, #861F41 0%, #5e1630 100%);
+    color: #fff;
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    border-bottom: 5px solid #E5751F;
+  }
+  .catalog-hero h1 {
+    color: #fff;
+    font-size: 2rem;
+    margin: 0 0 0.3rem 0;
+  }
+  .catalog-hero p {
+    color: #D7D2CB;
+    font-size: 1.05rem;
+    margin: 0;
+  }
+  .stats-bar {
+    display: flex;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+  }
+  .stat-card {
+    background: #fff;
+    border: 1px solid #D7D2CB;
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    flex: 1;
+    min-width: 140px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+  .stat-card .stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #861F41;
+    line-height: 1;
+  }
+  .stat-card .stat-label {
+    font-size: 0.8rem;
+    color: #75787B;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.3rem;
+  }
+  .section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #861F41;
+    margin: 2rem 0 0.75rem 0;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid #E5751F;
+    display: inline-block;
+  }
+  .query-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 0.75rem 0 1.5rem 0;
+  }
+  .query-card {
+    background: #fff;
+    border: 1px solid #D7D2CB;
+    border-radius: 10px;
+    padding: 1.2rem;
+    text-decoration: none;
+    transition: all 0.15s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .query-card:hover {
+    border-color: #E5751F;
+    box-shadow: 0 3px 12px rgba(134, 31, 65, 0.12);
+    transform: translateY(-1px);
+  }
+  .query-card h3 {
+    margin: 0 0 0.4rem 0;
+    font-size: 1rem;
+    color: #861F41;
+  }
+  .query-card p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #75787B;
+    line-height: 1.4;
+  }
+  .query-card .card-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+  .table-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin: 0.75rem 0 1.5rem 0;
+  }
+  .table-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    border: 1px solid #E5E1E6;
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    text-decoration: none;
+    color: #2a2a2a;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.15s;
+  }
+  .table-pill:hover {
+    border-color: #508590;
+    background: #f5f9fa;
+    color: #861F41;
+  }
+  .table-pill .pill-count {
+    background: #E5E1E6;
+    color: #75787B;
+    font-size: 0.75rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 20px;
+    margin-left: auto;
+  }
+  .sql-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #508590;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    transition: background 0.15s;
+  }
+  .sql-link:hover {
+    background: #3d6b74;
+    color: #fff;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="catalog-hero">
+  <h1>Helmet Lab Data Catalog</h1>
+  <p>Virginia Tech Helmet Lab &mdash; Centralized Dataset Registry</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-card">
+    <div class="stat-value">12</div>
+    <div class="stat-label">Datasets</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">22</div>
+    <div class="stat-label">Storage Locations</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">5</div>
+    <div class="stat-label">Projects</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">3</div>
+    <div class="stat-label">Modalities</div>
+  </div>
+</div>
+
+<div class="section-title">Quick Views</div>
+<div class="query-cards">
+  <a class="query-card" href="{{ base_url }}catalog/overview">
+    <div class="card-icon">&#128202;</div>
+    <h3>Dataset Overview</h3>
+    <p>All datasets with size, format, sample count, and primary storage path</p>
+  </a>
+  <a class="query-card" href="{{ base_url }}catalog/all-locations">
+    <div class="card-icon">&#128193;</div>
+    <h3>All Storage Locations</h3>
+    <p>Every copy of every dataset across cluster and SharePoint</p>
+  </a>
+  <a class="query-card" href="{{ base_url }}catalog/project-usage">
+    <div class="card-icon">&#128640;</div>
+    <h3>Project Usage</h3>
+    <p>Which projects use which datasets and in what role</p>
+  </a>
+  <a class="query-card" href="{{ base_url }}catalog#queries">
+    <div class="card-icon">&#9000;</div>
+    <h3>SQL Editor</h3>
+    <p>Write and run custom SQL queries against the catalog</p>
+  </a>
+</div>
+
+<div class="section-title">Browse Tables</div>
+<div class="table-grid">
+  <a class="table-pill" href="{{ base_url }}catalog/datasets">
+    datasets
+    <span class="pill-count">12</span>
+  </a>
+  <a class="table-pill" href="{{ base_url }}catalog/dataset_stats">
+    dataset_stats
+    <span class="pill-count">12</span>
+  </a>
+  <a class="table-pill" href="{{ base_url }}catalog/storage_locations">
+    storage_locations
+    <span class="pill-count">22</span>
+  </a>
+  <a class="table-pill" href="{{ base_url }}catalog/annotations">
+    annotations
+    <span class="pill-count">4</span>
+  </a>
+  <a class="table-pill" href="{{ base_url }}catalog/projects">
+    projects
+    <span class="pill-count">5</span>
+  </a>
+  <a class="table-pill" href="{{ base_url }}catalog/project_datasets">
+    project_datasets
+    <span class="pill-count">8</span>
+  </a>
+  <a class="table-pill" href="{{ base_url }}catalog/tags">
+    tags
+    <span class="pill-count">19</span>
+  </a>
+  <a class="table-pill" href="{{ base_url }}catalog/dataset_tags">
+    dataset_tags
+  </a>
+  <a class="table-pill" href="{{ base_url }}catalog/lineage">
+    lineage
+    <span class="pill-count">0</span>
+  </a>
+</div>
+
+<a class="sql-link" href="{{ base_url }}catalog">Open SQL Editor</a>
+
+{% endblock %}

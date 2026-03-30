@@ -1,0 +1,223 @@
+/* Virginia Tech Helmet Lab — Data Catalog Theme */
+
+:root {
+  --vt-maroon: #861F41;
+  --vt-maroon-dark: #5e1630;
+  --vt-burnt-orange: #E5751F;
+  --vt-hokie-stone: #75787B;
+  --vt-teal: #508590;
+  --vt-grey: #D7D2CB;
+  --vt-smoke: #E5E1E6;
+  --vt-impact-orange: #CA4F00;
+}
+
+/* Global */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #faf9f8;
+  color: #2a2a2a;
+}
+
+/* Header */
+header {
+  background: var(--vt-maroon) !important;
+  border-bottom: 4px solid var(--vt-burnt-orange);
+  padding: 1rem 1.5rem !important;
+}
+
+header h1 a,
+header .metadata-description {
+  color: #fff !important;
+}
+
+header h1 a {
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1.4rem;
+}
+
+header h1 a:hover {
+  color: var(--vt-burnt-orange) !important;
+}
+
+header p {
+  color: var(--vt-grey) !important;
+  margin-top: 0.25rem;
+}
+
+/* Fix home link visibility */
+.crumbs a[href*="proxy"],
+p.crumbs a:first-child,
+a.crumb-home {
+  color: var(--vt-maroon) !important;
+  font-weight: 700;
+}
+
+/* Navigation / breadcrumbs */
+.crumbs a,
+nav a {
+  color: var(--vt-maroon);
+  font-weight: 600;
+}
+
+.crumbs a:hover,
+nav a:hover {
+  color: var(--vt-burnt-orange);
+}
+
+p.crumbs {
+  background: var(--vt-smoke);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+}
+
+/* Tables */
+table.rows-and-columns {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--vt-grey);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+table.rows-and-columns th {
+  background: var(--vt-maroon) !important;
+  color: #fff !important;
+  padding: 0.6rem 0.8rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-bottom: 2px solid var(--vt-burnt-orange);
+}
+
+table.rows-and-columns th a {
+  color: #fff !important;
+  text-decoration: none;
+}
+
+table.rows-and-columns th a:hover {
+  color: var(--vt-burnt-orange) !important;
+}
+
+table.rows-and-columns td {
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid #eae7e4;
+  font-size: 0.9rem;
+}
+
+table.rows-and-columns tr:nth-child(even) {
+  background: #faf9f8;
+}
+
+table.rows-and-columns tr:hover {
+  background: #f0ece8;
+}
+
+/* Database/table listing */
+.db-table h2 a,
+h2 a {
+  color: var(--vt-maroon);
+  text-decoration: none;
+}
+
+.db-table h2 a:hover,
+h2 a:hover {
+  color: var(--vt-burnt-orange);
+}
+
+/* Links */
+a {
+  color: var(--vt-maroon);
+  transition: color 0.15s;
+}
+
+a:hover {
+  color: var(--vt-burnt-orange);
+}
+
+/* SQL textarea */
+textarea.sql-editor,
+textarea[name="sql"] {
+  border: 2px solid var(--vt-grey);
+  border-radius: 6px;
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 0.9rem;
+  padding: 0.75rem;
+}
+
+textarea.sql-editor:focus,
+textarea[name="sql"]:focus {
+  border-color: var(--vt-teal);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(80, 133, 144, 0.2);
+}
+
+/* Buttons */
+input[type="submit"],
+button,
+.btn {
+  background: var(--vt-burnt-orange) !important;
+  color: #fff !important;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+input[type="submit"]:hover,
+button:hover,
+.btn:hover {
+  background: var(--vt-impact-orange) !important;
+}
+
+/* Canned queries list */
+ul.queries-list li a,
+.canned-queries a {
+  color: var(--vt-teal);
+  font-weight: 500;
+}
+
+ul.queries-list li a:hover,
+.canned-queries a:hover {
+  color: var(--vt-burnt-orange);
+}
+
+/* Filter form */
+.filter-row select,
+.filter-row input[type="text"] {
+  border: 1px solid var(--vt-grey);
+  border-radius: 4px;
+  padding: 0.35rem 0.5rem;
+}
+
+/* Footer */
+footer {
+  color: var(--vt-hokie-stone);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--vt-grey);
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+
+/* Page title */
+h1 {
+  color: var(--vt-maroon);
+  font-weight: 700;
+}
+
+/* Facets */
+.facet-info {
+  background: var(--vt-smoke);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+}
+
+.facet-info a {
+  color: var(--vt-teal);
+}

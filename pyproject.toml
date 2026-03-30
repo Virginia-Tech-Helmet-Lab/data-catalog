@@ -1,0 +1,12 @@
+[project]
+name = "data-catalog"
+version = "0.1.0"
+description = "Structured data catalog for the VT Helmet Lab"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiosqlite>=0.22.1",
+    "datasette>=0.65.2",
+    "msal>=1.35.1",
+    "requests>=2.33.0",
+]

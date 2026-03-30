@@ -1,0 +1,64 @@
+title: Helmet Lab Data Catalog
+description: Virginia Tech Helmet Lab - Centralized Dataset Registry
+databases:
+  catalog:
+    tables:
+      datasets:
+        label_column: name
+        description: Core dataset registry
+      storage_locations:
+        description: Where each dataset lives (cluster, sharepoint, etc.)
+      annotations:
+        description: Annotation sets per dataset
+      lineage:
+        description: Parent/child relationships between datasets
+      tags:
+        label_column: name
+      projects:
+        label_column: name
+    queries:
+      overview:
+        title: Dataset Overview
+        description: All datasets with stats and primary storage location
+        sql: |
+          SELECT
+            d.name,
+            d.modality,
+            d.domain,
+            ds.num_samples,
+            round(ds.total_size_bytes / 1073741824.0, 1) as size_gb,
+            ds.format,
+            sl.path as primary_path
+          FROM datasets d
+          LEFT JOIN dataset_stats ds ON ds.dataset_id = d.id
+          LEFT JOIN storage_locations sl ON sl.dataset_id = d.id AND sl.is_primary = 1
+          ORDER BY d.name
+      all-locations:
+        title: All Storage Locations
+        description: Every copy of every dataset
+        sql: |
+          SELECT
+            d.name as dataset,
+            sl.location_type,
+            CASE sl.is_primary WHEN 1 THEN 'PRIMARY' ELSE 'copy' END as status,
+            sl.path,
+            round(sl.size_bytes / 1073741824.0, 1) as size_gb,
+            sl.notes
+          FROM storage_locations sl
+          JOIN datasets d ON d.id = sl.dataset_id
+          ORDER BY d.name, sl.is_primary DESC
+      project-usage:
+        title: Project Dataset Usage
+        description: Which projects use which datasets
+        sql: |
+          SELECT
+            p.name as project,
+            d.name as dataset,
+            pd.role,
+            d.modality,
+            round(ds.total_size_bytes / 1073741824.0, 1) as size_gb
+          FROM project_datasets pd
+          JOIN projects p ON p.id = pd.project_id
+          JOIN datasets d ON d.id = pd.dataset_id
+          LEFT JOIN dataset_stats ds ON ds.dataset_id = d.id
+          ORDER BY p.name, d.name

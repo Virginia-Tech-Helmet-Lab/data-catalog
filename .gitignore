@@ -1,0 +1,22 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Data (tracked by catalog.db, not git)
+data/
+catalog.db
+catalog.db-shm
+catalog.db-wal
+sharepoint_tree.json
+download_log.json
+.token_cache.json
+
+# Claude Code local settings
+.claude/
