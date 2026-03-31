@@ -283,21 +283,33 @@ wheels = [
 [[package]]
 name = "data-catalog"
 version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
+source = { editable = "." }
+
+[package.optional-dependencies]
+all = [
     { name = "aiosqlite" },
     { name = "datasette" },
     { name = "msal" },
     { name = "requests" },
 ]
+sharepoint = [
+    { name = "msal" },
+    { name = "requests" },
+]
+viewer = [
+    { name = "aiosqlite" },
+    { name = "datasette" },
+]
 
 [package.metadata]
 requires-dist = [
-    { name = "aiosqlite", specifier = ">=0.22.1" },
-    { name = "datasette", specifier = ">=0.65.2" },
-    { name = "msal", specifier = ">=1.35.1" },
-    { name = "requests", specifier = ">=2.33.0" },
+    { name = "aiosqlite", marker = "extra == 'viewer'", specifier = ">=0.22.1" },
+    { name = "data-catalog", extras = ["sharepoint", "viewer"], marker = "extra == 'all'" },
+    { name = "datasette", marker = "extra == 'viewer'", specifier = ">=0.65.2" },
+    { name = "msal", marker = "extra == 'sharepoint'", specifier = ">=1.35.1" },
+    { name = "requests", marker = "extra == 'sharepoint'", specifier = ">=2.33.0" },
 ]
+provides-extras = ["sharepoint", "viewer", "all"]
 
 [[package]]
 name = "datasette"

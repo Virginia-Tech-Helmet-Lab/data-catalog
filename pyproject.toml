@@ -4,9 +4,21 @@ version = "0.1.0"
 description = "Structured data catalog for the VT Helmet Lab"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [
-    "aiosqlite>=0.22.1",
-    "datasette>=0.65.2",
-    "msal>=1.35.1",
-    "requests>=2.33.0",
-]
+
+# Core deps only -- enough for data_catalog.db
+dependencies = []
+
+[project.optional-dependencies]
+# SharePoint crawling
+sharepoint = ["msal>=1.35.1", "requests>=2.33.0"]
+# Web viewer
+viewer = ["datasette>=0.65.2", "aiosqlite>=0.22.1"]
+# Everything
+all = ["data-catalog[sharepoint,viewer]"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/data_catalog"]
